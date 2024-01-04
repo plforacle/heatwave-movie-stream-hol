@@ -30,8 +30,8 @@
           },
 
           {
-            "title": "Lab 4:  Download & Transform the MovieLens dataset files",
-            "filename": "../../transform-data/transform-data.md"
+            "title": "Lab 4:  Upload data to Object Storage for HeatWave Lakehouse",
+            "filename": "../../create-lakehouse-files-movie/create-lakehouse-files-movie.md"
           },
 
           {

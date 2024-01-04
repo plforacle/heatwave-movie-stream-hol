@@ -128,45 +128,7 @@ In this lab, you will be guided through the following tasks:
 5. On Security List for Private Subnet-HEATWAVE-VCN page, the new Ingress Rules will be shown under the Ingress Rules List
     ![show ingres rule](./images/vcn-private-security-list-ingress-display.png "vcn private security list ingress display")
 
-## Task 4: Configure security list to allow HTTP incoming connections
-
-1. Navigation Menu > Networking > Virtual Cloud Networks
-
-2. Open HEATWAVE-VCN
-
-3. Click  public subnet-HEATWAVE-VCN
-
-4. Click Default Security List for HEATWAVE-VCN
-
-5. Click Add Ingress Rules page under Ingress Rule
-
-    Add an Ingress Rule with Source CIDR
-
-    ```bash
-    <copy>0.0.0.0/0</copy>
-    ```
-
-    Destination Port Range
-
-    ```bash
-    <copy>80,443</copy>
-    ```
-
-    Description
-
-    ```bash
-    <copy>Allow HTTP connections</copy>
-    ```
-
-6. Click 'Add Ingress Rule'
-
-    ![Add HTTP Ingress Rule](./images/vcn-ttp-add-ingress.png "Add HTTP Ingress Rule")
-
-7. On Security List for Default Security List for HEATWAVE-VCN page, the new Ingress Rules will be shown under the Ingress Rules List
-
-    ![View VCN Completed HTTP Ingress rules](./images/vcn-ttp-ingress-completed.png "View VCN Completed HTTP Ingress rules")
-
-## Task 5: Create MySQL Database for HeatWave (DB System) instance
+## Task 4: Create MySQL Database for HeatWave (DB System) instance
 
 1. Click on Navigation Menu
          Databases
