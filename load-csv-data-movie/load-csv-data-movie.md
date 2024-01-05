@@ -107,6 +107,12 @@ We will now create the machine learning training tables from the Object Store.
 
     You are now ready to use Autoload to load a table from the object store into MySQL HeatWave Lakehouse
 
+6. Load the movie tables into the HeatWave cluster memory:
+
+    ```bash
+    <copy>CALL sys.heatwave_load(JSON_ARRAY('movies'), NULL);</copy>
+    ```
+
 ## Task 3: Run Autoload to infer the schema and estimate capacity for the data0 tables in the Object Store
 
 1. The data is contained in the data0.csv file in object store for which we have created a PAR URL in the earlier task. Enter the following commands one by one and hit Enter.
