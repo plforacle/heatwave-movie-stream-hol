@@ -229,8 +229,19 @@ In this lab, you will be guided through the following task:
 
     ![ml model predict rows for different items](./images/ml-model-predict-row-items-users.png "ml-model-predict-row-items-users ")
 
+2. To avoid consuming too much space, it is good practice to unload a model when you are finished using it. 
+    
+    a. Unload all three models from memory
 
-To avoid consuming too much space, it is good practice to unload a model when you are finished using it.
+    ```bash
+    <copy>
+    CALL sys.ML_MODEL_UNLOAD(@movies_model_1);
+    CALL sys.ML_MODEL_UNLOAD(@movies_model_2);
+    CALL sys.ML_MODEL_UNLOAD(@movies_model_3);</copy>
+    ```
+
+    b. Hit **ENTER** to execute the last command
+
 
 You may now **proceed to the next lab**
 
