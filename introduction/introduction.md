@@ -6,7 +6,7 @@
 
 Welcome to this workshop in which you’ll follow step-by-step instructions to build the MovieHub application powered by MySQL HeatWave. MovieHub is a fictitious movie streaming application that delivers personalized recommendations using machine learning. It leverages the built-in HeatWave AutoML recommender system to predict, for example, movies that a user will like, or to which users a given movie should be promoted. You’ll build this app using the most popular low-code development platform, Oracle APEX, which will also enable you to create analytics dashboards in the application. You’ll develop a few scenarios both from the user's and the administrator's perspective.
 
-_Estimated Lab Time:_ 3.5 hours
+_Estimated Lab Time:_ 2.5 hours
 
 _Lab Setup
 
@@ -14,7 +14,21 @@ _Lab Setup
 
 ## About Product/Technology
 
-MySQL HeatWave is the only cloud service that combines transactions, real-time analytics across data warehouses and data lakes, and machine learning in one MySQL Database—without the complexity, latency, risks, and cost of ETL duplication. It delivers unmatched performance and price-performance. HeatWave AutoML enables in-database machine learning, allowing you to build, train, deploy, and explain machine learning models within MySQL HeatWave. You do not need to move the data to a separate ML cloud service, or be an ML expert. MySQL Autopilot provides machine learning-powered automation that improves the performance, scalability, and ease of use of HeatWave, saving developers and DBAs significant time. The service can be deployed in OCI, AWS, Azure, in a hybrid environment, and in customers’ data centers with OCI Dedicated Region.
+MySQL HeatWave Lakehouse allows you to query data in object storage, MySQL databases, or a combination of both with record speed—and automatically build, train, run, and explain machine learning (ML) models. It’s available on Oracle Cloud Infrastructure (OCI), Amazon Web Services (AWS), and Microsoft Azure.
+
+### Why MySQL HeatWave Lakehouse?
+
+#### Query non-MySQL and MySQL workloads
+
+Query processing is done entirely within the HeatWave engine, so you can take advantage of MySQL HeatWave Lakehouse for non-MySQL workloads as well as MySQL-compatible workloads.
+
+#### Get the best performance and price-performance
+
+The query performance of MySQL HeatWave Lakehouse is 9X faster than Amazon Redshift, 17X faster than Snowflake, 17X faster than Databricks, and 36X faster than Google BigQuery, per a 500 TB TPC-H benchmark. Price-performance is also significantly better.
+
+#### Use built-in ML with all your data, plus generative AI
+
+Automate the pipeline to build, train, deploy, and explain ML models using data in object storage and MySQL Database, without moving the data to a separate ML cloud service and at no additional cost. Interact with HeatWave Lakehouse using natural language.
 
 ## Objectives
 
@@ -23,15 +37,14 @@ In this workshop, you will use OCI, MySQL HeatWave, and Oracle APEX to build the
 1. Create MySQL HeatWave Database System
 2. Setup a HeatWave Cluster for OLAP/AutoML
 3. Create Bastion Server for MySQL Data
-4. Download & Transform the MovieLens dataset files
-5. Add MovieLens data to MySQL HeatWave
+4. Upload data to Object Storage for HeatWave Lakehouse
+5. Load CSV data from OCI Object Store to Lakehouse
 6. Create and test HeatWave AutoML Recommender System
-7. Create the base Movies Database Tables for the Movie App
+7. Generate Predictions using the Machine Learning models for the Movie App
 8. Query Information from the movies and predictions tables
 9. Create a Low Code Application with Oracle APEX and REST SERVICES for MySQL
 10. Setup the APEX Application and Workspace
 11. Explore the Movie Recommendation App with data inside MySQL HeatWave
-12. (Bonus) Add your images to the MovieHub App for display
 
 ## Prerequisites
 
@@ -44,7 +57,7 @@ You may now **proceed to the next lab**
 
 - **Author** - Cristian Aguilar, MySQL Solution Engineering
 - **Contributors** - Perside Foster, MySQL Principal Solution Engineering
-- **Last Updated By/Date** - Cristian Aguilar, MySQL Solution Engineering, November 2023
+- **Last Updated By/Date** - Perside Foster, MySQL Principal Solution Engineering, January 2024
 
 - **Dataset** - F. Maxwell Harper and Joseph A. Konstan. 2015. The MovieLens Datasets:
 History and Context. ACM Transactions on Interactive Intelligent

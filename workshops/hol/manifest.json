@@ -45,7 +45,7 @@
           },
 
           {
-            "title": "Lab 7:  Create the base Movies Database Tables for the Movie App",
+            "title": "Lab 7:  Generate Predictions for the Machine Learning models",
             "filename": "../../create-movie-tables/create-movie-tables.md"
           },
 
@@ -67,11 +67,6 @@
           {
             "title": "Lab 11:  Explore the Movie Recommendation App with data inside MySQL HeatWave",
             "filename": "../../develop-moviehub-apex-app/develop-moviehub-apex-app.md"
-          },
-
-          {
-            "title": "Lab 12:  (Bonus) Add your images to the MovieHub App for display",
-            "filename": "../../improve-app-hw/improve-app-hw.md"
           },
 
           {

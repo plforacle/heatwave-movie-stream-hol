@@ -6,7 +6,7 @@
 
 HeatWave ML makes it easy to use machine learning, whether you are a novice user or an experienced ML practitioner. You provide the data, and HeatWave AutoML analyzes the characteristics of the data and creates an optimized machine learning model that you can use to generate predictions and explanations. An ML model makes predictions by identifying patterns in your data and applying those patterns to unseen data. HeatWave ML explanations help you understand how predictions are made, such as which features of a dataset contribute most to a prediction.
 
-To load the movies data, perform the following steps to create and load the required schema and tables. 
+To load the movies data, perform the following steps to create and load the required schema and tables.
 
 After this step the data is stored in the MySQL HeatWave database in the following schema and tables:
 
@@ -36,7 +36,7 @@ In this lab, you will be guided through the following task:
 - Some Experience with MySQL Shell
 - Completed Lab 5
 
-## Task 1: Connect with MySQL Shell:
+## Task 1: Connect with MySQL Shell
 
 1. Go to Cloud shell to SSH into the new Compute Instance
 
@@ -85,7 +85,6 @@ In this lab, you will be guided through the following task:
     ```
 
 ## Task 4: Train one ML model with the original data table: data0
-
 
 1. Train the model using ML_TRAIN. Since this is a recommendation dataset, the recommendation task is specified to create a recommendation model:
 
@@ -212,7 +211,7 @@ In this lab, you will be guided through the following task:
 
     ![ml models 3 predict row for user 600](./images/ml-models3-predict-row-user600.png "ml-models3-predict-row-user 600 ")
 
-1. Test the model to predict the TOP 8 recommended users for different given items.
+2. Test the model to predict the TOP 8 recommended users for different given items.
 
     a. Predict multiple ROWS with a single model. Top 8 recommended users for the items '100' , '200', '300'
 
@@ -229,8 +228,8 @@ In this lab, you will be guided through the following task:
 
     ![ml model predict rows for different items](./images/ml-model-predict-row-items-users.png "ml-model-predict-row-items-users ")
 
-2. To avoid consuming too much space, it is good practice to unload a model when you are finished using it. 
-    
+3. To avoid consuming too much space, it is good practice to unload a model when you are finished using it.
+
     a. Unload all three models from memory
 
     ```bash
@@ -242,13 +241,12 @@ In this lab, you will be guided through the following task:
 
     b. Hit **ENTER** to execute the last command
 
-
 You may now **proceed to the next lab**
 
 ## Learn More
 
 - [Oracle Cloud Infrastructure MySQL Database Service Documentation](https://docs.oracle.com/en-us/iaas/mysql-database/index.html)
-- [MySQL HeatWave ML Documentation] (https://dev.mysql.com/doc/heatwave/en/mys-hwaml-machine-learning.html)
+- [MySQL HeatWave ML Documentation] (<https://dev.mysql.com/doc/heatwave/en/mys-hwaml-machine-learning.html>)
 
 ## Acknowledgements
 
