@@ -1,4 +1,4 @@
-# Load CSV data from OCI Object Store to Lakehouse - black-friday
+# Load CSV data from OCI Object Store to Lakehouse - movies
 
 ## Introduction
 
@@ -8,47 +8,44 @@ To load data from Object Storage to HeatWave, you need to specify the location o
 
 2. Use [Pre-Authenticated Request URLs (PARs)](https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm) - If you choose to use PARs, we recommend that you use read-only PARs with Lakehouse and specify short expiration dates for your PARs. The expiration dates should align with your loading schedule.
 
-Since we are using a sample data set, we will make use of PAR in this LiveLab. We already have several tables available in HeatWave that have been loaded from MySQL.
+Since we are using example data, we will make use of PAR in this LiveLab. We already have the required "movies" schema  loaded when the HeatWave database was created.
 
-We will now load the Black Friday tables from the Object Store.
+We will now create the machine learning training tables from the Object Store.
 
 ### Objectives
 
-- Create PAR Link for the  "black_friday" files
+- Create PAR Link for the  "moviestream-files" bucket for all thre files.
 - Run Autoload to infer the schema and estimate capacity
-- Load complete black_friday tables from Object Store into MySQL HeatWave
+- Load complete machine learning training tables from Object Store into HeatWave Lakehouse
 
 ### Prerequisites
 
 - An Oracle Trial or Paid Cloud Account
 - Some Experience with MySQL Shell
-- Completed Lab 5
+- Completed Lab 4
 
-## Task 1: Create the PAR Link for the "black\_friday" files
+## Task 1: Create the PAR Link for the "moviestream-files" bucket
 
-1. Create a PAR URL for the **black\_friday\_train.csv** object
+1. Create a PAR URL for the **data0.csv** object
 
     - a. From your OCI console, navigate to your lakehouse-files bucket in OCI.
-    - b. Select the black\_friday\_train.csv file and click the three vertical dots.
+    - b. Select the data0.csv file and click the three vertical dots.
 
-        ![Select  black_friday_train.csv](./images/storage-delivery-orders-folder.png "storage black_friday_train.csv")
+        ![Select  data0.csv](./images/movies-bucket-data.png "storage data0.csv")
 
     - c. Click on ‘Create Pre-Authenticated Request’
     - d. Click to select the ‘Object’ option under ‘PreAuthentcated Request Target’.
     - e. Leave the ‘Access Type’ option as-is: ‘Permit object reads’.
     - h. Click the ‘Create Pre-Authenticated Request’ button.
 
-       ![Create Folder PAR](./images/storage-delivery-orders-folder-page.png "storage  folder page")
+       ![Create Folder PAR](./images/movies-bucket-data-page.png "storage  folder page")
 
     - i. Click the ‘Copy’ icon to copy the PAR URL.
     - j. Save the generated PAR URL; you will need it later.
 
-2. Save the generated PAR URL; you will need it in the next task
-
-3. Do the same to create a PAR URL for the **black\_friday\_test.csv** object
-
+2. Do the same process to create a PAR URL for **data1.csv** by performaing the following tasks:
     - a. From your OCI console, navigate to your lakehouse-files bucket in OCI.
-    - b. Select the black\_friday\_test.csv file and click the three vertical dots.
+    - b. Select the data1.csv file and click the three vertical dots.
     - c. Click on ‘Create Pre-Authenticated Request’
     - d. Click to select the ‘Object’ option under ‘PreAuthentcated Request Target’.
     - e. Leave the ‘Access Type’ option as-is: ‘Permit object reads’.
@@ -56,14 +53,26 @@ We will now load the Black Friday tables from the Object Store.
     - i. Click the ‘Copy’ icon to copy the PAR URL.
     - j. Save the generated PAR URL; you will need it later.
 
-4. Save the generated PAR URL; you will need it in the next task
+3. Do the same process to create a PAR URL for **data2.csv** by performaing the following tasks:
+    - a. From your OCI console, navigate to your lakehouse-files bucket in OCI.
+    - b. Select the data1.csv file and click the three vertical dots. 
+    - c. Click on ‘Create Pre-Authenticated Request’
+    - d. Click to select the ‘Object’ option under ‘PreAuthentcated Request Target’.
+    - e. Leave the ‘Access Type’ option as-is: ‘Permit object reads’.
+    - h. Click the ‘Create Pre-Authenticated Request’ button.
+    - i. Click the ‘Copy’ icon to copy the PAR URL.
+    - j. Save the generated PAR URL; you will need it later.
+
+4. You should have generated and saved three different PAR URL; you will need them in the next tasks. They should look like this:
+
+![Create Folder PAR](./images/movies-bucket-data-par.png "storage  folder page")
 
 ## Task 2: Connect to your MySQL HeatWave system using Cloud Shell
 
 1. If not already connected with SSH, on Command Line, connect to the Compute instance using SSH ... be sure replace the  "private key file"  and the "new compute instance ip"
 
      ```bash
-    <copy>ssh -i private_key_file opc@new_compute_instance_ip</copy>
+    <copy>ssh -i ~/.ssh/id_rsa opc@<your_compute_instance_ip></copy>
      ```
 
 2. If not already connected to MySQL then connect to MySQL using the MySQL Shell client tool with the following command:
@@ -77,42 +86,45 @@ We will now load the Black Friday tables from the Object Store.
 3. List schemas in your heatwave instance
 
     ```bash
-        <copy>show databases;</copy>
+    <copy>show databases;</copy>
     ```
 
-    ![Databse Schemas](./images/list-schemas-after.png "list schemas after")
+    ![Database movieSchemas](./images/show-database-movie.png "list movie schemas after")
 
-4. Create the Machine Learning schema 
+4. Set default schema
 
     ```bash
-    <copy>CREATE DATABASE heatwaveml_bench;</copy>
+    <copy>use movies;</copy>
     ```
 
-5. Set new database as default
+5. List the movies schema tables.
 
     ```bash
-    <copy>use heatwaveml_bench;</copy>
+    <copy>show tables;</copy>
     ```
 
-    You are now ready to use Autoload to load a table from the object store into MySQL HeatWave
+    ![Database movieSchemas](./images/show-database-movie-tables.png "list movie schemas after")
 
-## Task 3: Run Autoload to infer the schema and estimate capacity for the black\_friday tables in the Object Store
 
-1. The data is contained in the black\_friday\_train.csv file in object store for which we have created a PAR URL in the earlier task. Enter the following commands one by one and hit Enter.
+    You are now ready to use Autoload to load a table from the object store into MySQL HeatWave Lakehouse
+
+## Task 3: Run Autoload to infer the schema and estimate capacity for the data0 tables in the Object Store
+
+1. The data is contained in the data0.csv file in object store for which we have created a PAR URL in the earlier task. Enter the following commands one by one and hit Enter.
 
 2. This sets the schema we will load table data into. Don’t worry if this schema has not been created. Autopilot will generate the commands for you to create this schema if it doesn’t exist.
 
     ```bash
-    <copy>SET @db_list = '["heatwaveml_bench"]';</copy>
+    <copy>SET @db_list = '["movies"]';</copy>
     ```
 
 3. This sets the parameters for the table name we want to load data into and other information about the source file in the object store. Substitute the **(PAR URL)** below with the one you generated in the previous task:
 
     ```bash
     <copy>SET @dl_tables = '[{
-    "db_name": "heatwaveml_bench",
+    "db_name": "movies",
     "tables": [{
-        "table_name": "black_friday_train",
+        "table_name": "data0",
         "dialect": {
             "format": "csv",
             "field_delimiter": ",",
@@ -150,7 +162,7 @@ We will now load the Black Friday tables from the Object Store.
 
     ![Dryrun script](./images/load-script-dryrun.png "load script dryrun")
 
-7. Autoload also generated a statement lke the one below. Execute this statement now.
+7. Autoload also generated a statement like the one below. Execute this statement now.
 
     ```bash
     <copy>SELECT log->>"$.sql" AS "Load Script" FROM sys.heatwave_autopilot_report WHERE type = "sql" ORDER BY id;</copy>
@@ -159,83 +171,132 @@ We will now load the Black Friday tables from the Object Store.
 
 8. The execution result contains the SQL statements needed to create the table and then load this table data from the Object Store into HeatWave.
 
-    ![create train table](./images/create-black-friday-train.png "create train table")
+    ![create data0 table](./images/create-movies-data0.png "create data0 table")
 
 9. Copy the **CREATE TABLE** command from the results.
 
-10. Execute the **CREATE TABLE** command to create the black-friday table.
+10. Execute the **CREATE TABLE** command to create the data0 table.
 
 11. The create command and result should look lie this
 
-    ![ result train table](./images/create-table-black-friday.png "result train table")
+    ![ execute data0](./images/create-movies-data0-execute.png "execute data0 table")
 
-## Task 4: Load the black\_friday\_train table from Object Store into MySQL HeatWave
+    ![ execute result data0](./images/create-movies-data0-execute-result.png "execute result data0 table")
+
+
+
+## Task 4: Load the data0 table from Object Store into MySQL HeatWave
 
 1. Run this command to see the table structure created.
 
     ```bash
-    <copy>desc black_friday_train;</copy>
+    <copy>desc data0;</copy>
     ```
 
-    ![black_friday_train Table structure](./images/describe-balck-friday-table.png "black_friday_train Table structure")
+    ![movie data0 desc](./images/create-movies-data0-desc.png "movie data0 desc")
 
 2. Now load the data from the Object Store file into the table.
 
     ```bash
-    <copy> ALTER TABLE `heatwaveml_bench`.`black_friday_train` SECONDARY_LOAD; </copy>
+    <copy> ALTER TABLE /*+ AUTOPILOT_DISABLE_CHECK */ `movies`.`data0` SECONDARY_LOAD;  </copy>
     ```
 
 3. Check the number of rows loaded into the table.
 
     ```bash
-    <copy>select count(*) from black_friday_train;</copy>
+    <copy>select count(*) from data0;</copy>
     ```
 
-    The black\_friday\_train table has 116698 rows.
+    The data0 table has 100000 rows.
 
 4. View a sample of the data in the table.
 
     ```bash
-    <copy>select * from black_friday_train limit 5;</copy>
+    <copy>select * from data0 limit 5;</copy>
     ```
 
-## Task 5: Create and Load the black\_friday\_test table from Object Store into MySQL HeatWave
+    ![ view data0](./images/create-movies-data0-view.png "view data0 table")
 
-1. Create the black\_friday\_test table by copying the black\_friday\_train Create command and replace the  (PAR URL) with the black\_friday\_test.csv PAR URL  you saved earlier. It will be the source for the black\_friday\_test.csv table:
+## Task 5: Create and Load the data1 table from Object Store into MySQL HeatWave
+
+1. Create the data1 table by copying the data0 Create command and replace the  (PAR URL) with the data.csv PAR URL  you saved earlier. It will be the source for the data1.csv table:
 
     ```bash
-    <copy>CREATE TABLE `heatwaveml_bench`.`black_friday_test`( `Gender` varchar(1) NOT NULL COMMENT 'RAPID_COLUMN=ENCODING=VARLEN', `Age` varchar(5) NOT NULL COMMENT 'RAPID_COLUMN=ENCODING=VARLEN', `Occupation` tinyint unsigned NOT NULL, `City_Category` varchar(1) NOT NULL COMMENT 'RAPID_COLUMN=ENCODING=VARLEN', `Stay_In_Current_City_Years` varchar(2) NOT NULL COMMENT 'RAPID_COLUMN=ENCODING=VARLEN', `Marital_Status` tinyint unsigned NOT NULL, `Product_Category_1` tinyint unsigned NOT NULL, `Product_Category_2` tinyint unsigned NOT NULL, `Product_Category_3` tinyint unsigned NOT NULL, `Purchase` mediumint unsigned NOT NULL) ENGINE=lakehouse SECONDARY_ENGINE=RAPID ENGINE_ATTRIBUTE='{"file": [{"par": "(PAR URL)"}], "dialect": {"format": "csv", "has_header": true, "is_strict_mode": false, "field_delimiter": ",", "record_delimiter": "\\r\\n"}}';</copy>
+    <copy>CREATE TABLE `movies`.`data1`( `user_id` smallint unsigned NOT NULL, `item_id` smallint unsigned NOT NULL, `rating` tinyint unsigned NOT NULL) ENGINE=lakehouse SECONDARY_ENGINE=RAPID ENGINE_ATTRIBUTE='{"file": [{"par": "(PAR URL)"}], "dialect": {"format": "csv", "has_header": true, "is_strict_mode": false, "field_delimiter": ",", "record_delimiter": "\\n"}}';</copy>
     ```
 
+    - It should look like the following example. Be sure to replace the (PAR URL) value with  data1.csv PAR Link. The command should look like this. Then execute it.
 
-    - It should look like the following example 
-    (Be sure to include the PAR Link inside at of quotes("")):
-
-        ![autopilot create table with no field name](./images/create-table-no-fieldname.png "autopilot create table with no field name")
+    ![create-movies-data1](./images/create-movies-data1.png "create-movies-data1")
 
 2. Run this command to see the table structure created:
 
     ```bash
-    <copy>desc black_friday_test;</copy>
+    <copy>desc data1;</copy>
     ```
 
-3. Load the data from the Object Store into the black\_friday\_test table.
+3. Load the data from the Object Store into the data1 table.
 
     ```bash
-    <copy>ALTER TABLE /*+ AUTOPILOT_DISABLE_CHECK */ `heatwaveml_bench`.`black_friday_test` SECONDARY_LOAD;</copy>
+    <copy>ALTER TABLE /*+ AUTOPILOT_DISABLE_CHECK */ `movies`.`data1` SECONDARY_LOAD; </copy>
     ```
 
 4. Once Autoload completes, check the number of rows loaded into the table.
 
     ```bash
-    <copy>select count(*) from black_friday_test;</copy>
+    <copy>select count(*) from data1;</copy>
     ```
+
+    The data1 table has 100000 rows.
 
 5. View a sample of the data in the table.
 
     ```bash
-    <copy>select * from black_friday_test limit 5;</copy>
+    <copy>select * from data1 limit 5;</copy>
     ```
+
+    ![ view data0](./images/create-movies-data1-view.png "view data0 table")
+
+
+## Task 6: Create and Load the data2 table from Object Store into MySQL HeatWave
+
+1. Create the data2 table by copying the data0 Create command and replace the  (PAR URL) with the data.csv PAR URL  you saved earlier. It will be the source for the data2.csv table:
+
+    ```bash
+    <copy>CREATE TABLE `movies`.`data2`( `user_id` smallint unsigned NOT NULL, `item_id` smallint unsigned NOT NULL, `rating` tinyint unsigned NOT NULL) ENGINE=lakehouse SECONDARY_ENGINE=RAPID ENGINE_ATTRIBUTE='{"file": [{"par": "(PAR URL)"}], "dialect": {"format": "csv", "has_header": true, "is_strict_mode": false, "field_delimiter": ",", "record_delimiter": "\\n"}}';</copy>
+    ```
+
+    - It should look like the following example. Be sure to replace the (PAR URL) value with  data2.csv PAR Link. The command should look like this. Then execute it.
+
+    ![create-movies-data1](./images/create-movies-data2.png "create-movies-data1")
+
+2. Run this command to see the table structure created:
+
+    ```bash
+    <copy>desc data2;</copy>
+    ```
+
+3. Load the data from the Object Store into the data2 table.
+
+    ```bash
+    <copy>ALTER TABLE /*+ AUTOPILOT_DISABLE_CHECK */ `movies`.`data2` SECONDARY_LOAD; </copy>
+    ```
+
+4. Once Autoload completes, check the number of rows loaded into the table.
+
+    ```bash
+    <copy>select count(*) from data2;</copy>
+    ```
+
+    The data2 table has 100000 rows.
+
+5. View a sample of the data in the table.
+
+    ```bash
+    <copy>select * from data2 limit 5;</copy>
+    ```
+
+    ![ view data0](./images/create-movies-data2-view.png "view data0 table")
 
 You may now **proceed to the next lab**
 
@@ -243,5 +304,5 @@ You may now **proceed to the next lab**
 
 - **Author** - Perside Foster, MySQL Solution Engineering
 
-- **Contributors** - Abhinav Agarwal, Senior Principal Product Manager, Nick Mader, MySQL Global Channel Enablement & Strategy Manager
-- **Last Updated By/Date** - Perside Foster, MySQL Solution Engineering, May 2023
+- **Contributors** - Abhinav Agarwal, Senior Principal Product Manager, Nick Mader, MySQL Global Channel Enablement & Strategy Manager , Cristian Aguilar, MySQL Solution Engineering
+- **Last Updated By/Date** - Perside Foster, MySQL Solution Engineering, Jan 2024
