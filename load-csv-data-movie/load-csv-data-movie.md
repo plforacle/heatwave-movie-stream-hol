@@ -174,16 +174,17 @@ We will now create the machine learning training tables from the Object Store.
     ![create data0 table](./images/create-movies-data0.png "create data0 table")
 
 9. Copy the **CREATE TABLE** command from the results.
+10. Replace the following column values:
+    - a.  `user_id` from smallint unsigned to **varchar(5)**
+    - b. `item_id` from smallint unsigned to **varchar(7)**
 
-10. Execute the **CREATE TABLE** command to create the data0 table.
+11. The create command should look lie this:
 
-11. The create command and result should look lie this
+    ![create data0 table update](./images/create-movies-data0-execute.png "create data0 table update")
 
-    ![ execute data0](./images/create-movies-data0-execute.png "execute data0 table")
-
+12. Execute the **CREATE TABLE** command to create the data0 table.
+13. The result should look lie this
     ![ execute result data0](./images/create-movies-data0-execute-result.png "execute result data0 table")
-
-
 
 ## Task 4: Load the data0 table from Object Store into MySQL HeatWave
 
@@ -222,7 +223,7 @@ We will now create the machine learning training tables from the Object Store.
 1. Create the data1 table by copying the data0 Create command and replace the  (PAR URL) with the data.csv PAR URL  you saved earlier. It will be the source for the data1.csv table:
 
     ```bash
-    <copy>CREATE TABLE `movies`.`data1`( `user_id` smallint unsigned NOT NULL, `item_id` smallint unsigned NOT NULL, `rating` tinyint unsigned NOT NULL) ENGINE=lakehouse SECONDARY_ENGINE=RAPID ENGINE_ATTRIBUTE='{"file": [{"par": "(PAR URL)"}], "dialect": {"format": "csv", "has_header": true, "is_strict_mode": false, "field_delimiter": ",", "record_delimiter": "\\n"}}';</copy>
+    <copy>CREATE TABLE `movies`.`data1`( `user_id` varchar(5)  NOT NULL, `item_id` varchar(7) NOT NULL, `rating` tinyint unsigned NOT NULL) ENGINE=lakehouse SECONDARY_ENGINE=RAPID ENGINE_ATTRIBUTE='{"file": [{"par": "(PAR URL)"}], "dialect": {"format": "csv", "has_header": true, "is_strict_mode": false, "field_delimiter": ",", "record_delimiter": "\\n"}}';</copy>
     ```
 
     - It should look like the following example. Be sure to replace the (PAR URL) value with  data1.csv PAR Link. The command should look like this. Then execute it.
@@ -263,7 +264,7 @@ We will now create the machine learning training tables from the Object Store.
 1. Create the data2 table by copying the data0 Create command and replace the  (PAR URL) with the data.csv PAR URL  you saved earlier. It will be the source for the data2.csv table:
 
     ```bash
-    <copy>CREATE TABLE `movies`.`data2`( `user_id` smallint unsigned NOT NULL, `item_id` smallint unsigned NOT NULL, `rating` tinyint unsigned NOT NULL) ENGINE=lakehouse SECONDARY_ENGINE=RAPID ENGINE_ATTRIBUTE='{"file": [{"par": "(PAR URL)"}], "dialect": {"format": "csv", "has_header": true, "is_strict_mode": false, "field_delimiter": ",", "record_delimiter": "\\n"}}';</copy>
+    <copy>CREATE TABLE `movies`.`data2`( `user_id` varchar(5)  NOT NULL, `item_id` varchar(7) NOT NULL, `rating` tinyint unsigned NOT NULL) ENGINE=lakehouse SECONDARY_ENGINE=RAPID ENGINE_ATTRIBUTE='{"file": [{"par": "(PAR URL)"}], "dialect": {"format": "csv", "has_header": true, "is_strict_mode": false, "field_delimiter": ",", "record_delimiter": "\\n"}}';</copy>
     ```
 
     - It should look like the following example. Be sure to replace the (PAR URL) value with  data2.csv PAR Link. The command should look like this. Then execute it.
