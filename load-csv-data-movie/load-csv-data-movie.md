@@ -97,14 +97,13 @@ We will now create the machine learning training tables from the Object Store.
     <copy>use movies;</copy>
     ```
 
-5. List the movies schema tables.
+5. List the movies schema tables. Make sure the following tables are listed in the schema.
 
     ```bash
     <copy>show tables;</copy>
     ```
 
     ![Database movieSchemas](./images/show-database-movie-tables.png "list movie schemas after")
-
 
     You are now ready to use Autoload to load a table from the object store into MySQL HeatWave Lakehouse
 
