@@ -220,7 +220,7 @@ In this lab, you will be guided through the following tasks:
 14. Add the followinf PAR Source URL to the Data Import Link entry.
 
     ```bash
-    <copy>https://objectstorage.us-ashburn-1.oraclecloud.com/p/-fy5xwgGeXy5PLEf7q0L9EhNAFvaf2nKOuHwTw3D-SLGrPZqBz-cXkDbJ9mXu20-/n/mysqlpm/b/mysql_movie_stream/o/movies/</copy>
+    <copy>https://objectstorage.us-ashburn-1.oraclecloud.com/p/DMGd8jluzYX_-DG8aNL5oxCUAROagd4h5020m-7GZCNoO08R9jPlGVn1vXE7ruFF/n/mysqlpm/b/mysql_movie_stream/o/moviesdb/</copy>
     ```
 
     It should look like this:
