@@ -1,5 +1,5 @@
 {
-  "workshoptitle": "Build a Movie Recommendation App with MySQL HeatWave Machine Learning",
+  "workshoptitle": "Build a Movie Recommendation App with MySQL HeatWave Machine Learning - HOL",
       "help": "livelabs-help-oci_us@oracle.com",
       "tutorials": [
           {
@@ -30,13 +30,13 @@
           },
 
           {
-            "title": "Lab 4:  Download & Transform the MovieLens dataset files",
-            "filename": "../../transform-data/transform-data.md"
+            "title": "Lab 4:  Upload data to Object Storage for HeatWave Lakehouse",
+            "filename": "../../create-lakehouse-files-movie/create-lakehouse-files-movie.md"
           },
 
           {
-            "title": "Lab 5:  Add MovieLens data to MySQL HeatWave",
-            "filename": "../../add-data-mysql/add-data-mysql.md"
+            "title": "Lab 5:  Load data from OCI Object Store to Lakehouse",
+            "filename": "../../load-csv-data-movie/load-csv-data-movie.md"
           },
 
           {
@@ -45,7 +45,7 @@
           },
 
           {
-            "title": "Lab 7:  Create the base Movies Database Tables for the Movie App",
+            "title": "Lab 7:  Generate Predictions for the Machine Learning models",
             "filename": "../../create-movie-tables/create-movie-tables.md"
           },
 
@@ -67,11 +67,6 @@
           {
             "title": "Lab 11:  Explore the Movie Recommendation App with data inside MySQL HeatWave",
             "filename": "../../develop-moviehub-apex-app/develop-moviehub-apex-app.md"
-          },
-
-          {
-            "title": "Lab 12:  (Bonus) Add your images to the MovieHub App for display",
-            "filename": "../../improve-app-hw/improve-app-hw.md"
           },
 
           {

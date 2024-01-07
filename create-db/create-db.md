@@ -216,8 +216,13 @@ In this lab, you will be guided through the following tasks:
     ```
 
     ![heatwave db advanced](./images/mysql-create-advanced.png "heatwave db advanced ")
-13. Select the Data Import tab.
-14. Add the followinf PAR Source URL to the Data Import Link entry.
+13. Use the Image below to see if you are using the **US East (Ashburn)** Region.
+
+    ![HeatWave Find Region](./images/regionSelector.png "region Selector")
+14. If your region is different then skip to **step 17**. You will be able to  load the movies database into HeatWave in Lab 3.
+
+15. Select the Data Import tab.
+16. Add the following PAR Source URL to the Data Import Link entry.
 
     ```bash
     <copy>https://objectstorage.us-ashburn-1.oraclecloud.com/p/DMGd8jluzYX_-DG8aNL5oxCUAROagd4h5020m-7GZCNoO08R9jPlGVn1vXE7ruFF/n/mysqlpm/b/mysql_movie_stream/o/moviesdb/</copy>
@@ -227,22 +232,22 @@ In this lab, you will be guided through the following tasks:
 
     ![HeatWave PAR Import](./images/mysql-data-import.png "mysql data import ")
 
-15. Review **Create MySQL DB System**  Screen
+17. Review **Create MySQL DB System**  Screen
 
     ![heatwave db create](./images/mysql-create.png "heatwave db create ")
 
     Click the '**Create**' button
 
-16. The New MySQL DB System will be ready to use after a few minutes
+18. The New MySQL DB System will be ready to use after a few minutes
 
     The state will be shown as 'Creating' during the creation
     ![show creeation state](./images/mysql-create-in-progress.png "show creeation state")
 
-17. The state 'Active' indicates that the DB System is ready for use
+19. The state 'Active' indicates that the DB System is ready for use
 
     ![show active state](./images/mysql-detail-active.png "show active state")
 
-18. On HEATWAVE-HW Page, select the **Connections** tab and save the MySQL Endpoint (Private IP Address) to notepad for use later.
+20. On HEATWAVE-HW Page, select the **Connections** tab and save the MySQL Endpoint (Private IP Address) to notepad for use later.
 
     ![heatwave endpoint](./images/mysql-detail-endpoint.png "heatwave endpoint")
 

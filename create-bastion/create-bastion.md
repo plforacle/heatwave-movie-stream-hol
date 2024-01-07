@@ -197,6 +197,63 @@ You will need a compute Instance to connect to your brand new MySQL database.
 
     ![mysql shell install](./images/mysql-install-shell.png "mysql shell install ")
 
+## Task 4: Connect to database using MySQL Shell
+
+1. Use the following command to connect to MySQL using the MySQL Shell client tool. Be sure to add the **HW-MovieHub** private IP address at the end of the command. Also enter the admin user and the db password created on Lab 1
+
+    (Example  **mysqlsh -uadmin -p -h10.0.1..   --sql**)
+
+    **[opc@...]$**
+
+    ```bash
+    <copy>mysqlsh -uadmin -p -h 10.0.1.... --sql</copy>
+    ```
+
+    ![MySQL Shell connected DB](./images/mysql-shell-first-connect.png "connect myslqsh")
+
+2. List schemas in your heatwave instance
+
+    ```bash
+    <copy>show databases;</copy>
+    ```
+
+    ![Database Schema List](./images/list-schemas-after.png "list schemas second view")
+3. if you do not see the **movies** schema on the list, then load it using the following commands:
+    - a. change to JS
+
+        ```bash
+        <copy>\js</copy>
+        ```
+
+    - b. Run load caommand
+
+        ```bash
+        <copy>util.loadDump("https://objectstorage.us-ashburn-1.oraclecloud.com/p/DMGd8jluzYX_-DG8aNL5oxCUAROagd4h5020m-7GZCNoO08R9jPlGVn1vXE7ruFF/n/mysqlpm/b/mysql_movie_stream/o/moviesdb/", {progressFile: "progress.json", loadIndexes:false, ignoreVersion:true})</copy>
+        ```
+
+        **Note**: If you get errors like the one below, the **movies** schema already exists. You used the correct PAR Link to load the data during the creation process in Lab1. Don't worry; everything is okay.
+
+         *ERROR: Schema `movies` already contains a table named customers*
+
+    - c. Make sure the **movies** schema was loaded
+
+        ```bash
+        <copy>show databases;</copy>
+        ```
+
+        ![Database Schema List](./images/list-schemas-after.png "list schemas second view")
+
+    - d. Change to SQL mode
+
+        ```bash
+        <copy>\sql</copy>
+        ```
+
+4. Exit MySQL Shell
+
+    ```bash
+    <copy>\q</copy>
+    ```
 
 You may now **proceed to the next lab**
 
