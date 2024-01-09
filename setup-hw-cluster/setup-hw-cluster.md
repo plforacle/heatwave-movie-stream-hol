@@ -34,12 +34,13 @@ In this lab, you will be guided through the following task:
 3. In the list of DB Systems, click the **HW-MovieHub** system. click **More Action ->  Add HeatWave Cluster**.
     ![mysql more actions add cluster](./images/mysql-more-actions-add-cluster.png " mysql more actions add cluster")
 
-4. On the “Add HeatWave Cluster” dialog, select the “HeatWave.512GB” shape
+4. Enable the MySQL HeatWave LakeHouse checkbox
+5. Set Node Count to 1 for this Lab Click Add HeatWave Cluster to create the HeatWave cluster
 
-5. Click “Add HeatWave Cluster” to create the HeatWave cluster
+6. Click “Add HeatWave Cluster” to create the HeatWave cluster
     ![mysql apply cluster](./images/mysql-apply-cluster.png " mysql apply cluster")
 
-6. HeatWave creation will take about 10 minutes. From the DB display page scroll down to the Resources section. Click the **HeatWave** link. Your completed HeatWave Cluster Information section will look like this:
+7. HeatWave creation will take about 10 minutes. From the DB display page scroll down to the Resources section. Click the **HeatWave** link. Your completed HeatWave Cluster Information section will look like this:
     ![mysql creating cluster](./images/mysql-creating-cluster.png "mysql creating cluster ")
 
 You may now **proceed to the next lab**

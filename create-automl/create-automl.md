@@ -76,15 +76,8 @@ In this lab, you will be guided through the following task:
 
     ![data0 table description detail](./images/data0-table-description.png "data0-table-description ")
 
-## Task 3: Load the movie database to HeatWave Cluster
 
-1. Load the movie tables into the HeatWave cluster memory:
-
-    ```bash
-    <copy>CALL sys.heatwave_load(JSON_ARRAY('movies'), NULL);</copy>
-    ```
-
-## Task 4: Train one ML model with the original data table: data0
+## Task 3: Train one ML model with the original data table: data0
 
 1. Train the model using ML_TRAIN. Since this is a recommendation dataset, the recommendation task is specified to create a recommendation model:
 
@@ -135,7 +128,7 @@ In this lab, you will be guided through the following task:
 
     ![ml model 1 predict row for user 600](./images/ml-model1-predict-row-user600.png "ml-model1-predict-row-user 600 ")
 
-## Task 5: Train two more ML models with the remaining data tables: data1 and data2
+## Task 4: Train two more ML models with the remaining data tables: data1 and data2
 
 1. Train the ML models:
 
@@ -192,7 +185,7 @@ In this lab, you will be guided through the following task:
 
     g. Hit **ENTER** to execute the last command
 
-## Task 6: Predict individual ROWS with the different trained models
+## Task 5: Predict individual ROWS with the different trained models
 
 1. Test the model to predict the TOP 3 items recommended for a given user.
 
