@@ -1,4 +1,4 @@
-# Create Bastion Server for MySQL Data
+# Create Bastion Server for MySQL and Create the movies Database
 
 ![mysql heatwave](./images/mysql-heatwave-logo.jpg "mysql heatwave")
 
@@ -10,12 +10,18 @@ _Estimated Lab Time:_ 10 minutes
 
 ### Objectives
 
-In this lab, you will be guided through the following tasks:
+In this lab, you will create the Bastion Host and the movies database used to train the recommender system model in MySQL. You will use MySQL Shell to Import the database from an Object Storage Bucket.
+
+The movies database uses the **MovieLens100k** dataset by GroupLens. Click the following link for an overview of the **MovieLens100k**  dataset files:
+
+[README file for the MovieLens dataset](https://files.grouplens.org/datasets/movielens/ml-100k-README.txt).
+
+You will be guided through the following tasks:
 
 - Create SSH Key on OCI Cloud
 - Create Bastion Compute Instance
 - Install MySQL Shell on the Compute Instance
-
+- Create the movies Database
 
 ### Prerequisites
 
@@ -197,7 +203,7 @@ You will need a compute Instance to connect to your brand new MySQL database.
 
     ![mysql shell install](./images/mysql-install-shell.png "mysql shell install ")
 
-## Task 4: Connect to database using MySQL Shell
+## Task 4: Connect to database using MySQL Shell and create the movies database
 
 1. Use the following command to connect to MySQL using the MySQL Shell client tool. Be sure to add the **HW-MovieHub** private IP address at the end of the command. Also enter the admin user and the db password created on Lab 1
 
@@ -217,8 +223,8 @@ You will need a compute Instance to connect to your brand new MySQL database.
     <copy>show databases;</copy>
     ```
 
-    ![Database Schema List](./images/list-schemas-after.png "list schemas second view")
-3. if you do not see the **movies** schema on the list, then load it using the following commands:
+    ![Database  List](./images/list-schemas-before.png "list deatabase before view")
+3. if you do not see the **movies** database on the list, then load it using the following commands:
     - a. change to JS
 
         ```bash
@@ -231,17 +237,13 @@ You will need a compute Instance to connect to your brand new MySQL database.
         <copy>util.loadDump("https://objectstorage.us-ashburn-1.oraclecloud.com/p/DMGd8jluzYX_-DG8aNL5oxCUAROagd4h5020m-7GZCNoO08R9jPlGVn1vXE7ruFF/n/mysqlpm/b/mysql_movie_stream/o/moviesdb/", {progressFile: "progress.json", loadIndexes:false, ignoreVersion:true})</copy>
         ```
 
-        **Note**: If you get errors like the one below, the **movies** schema already exists. You used the correct PAR Link to load the data during the creation process in Lab1. Don't worry; everything is okay.
-
-         *ERROR: Schema `movies` already contains a table named customers*
-
-    - c. Make sure the **movies** schema was loaded
+    - c. Make sure the **movies** database was loaded
 
         ```bash
         <copy>show databases;</copy>
         ```
 
-        ![Database Schema List](./images/list-schemas-after.png "list schemas second view")
+        ![Database List](./images/list-schemas-after.png "list database second view")
 
     - d. Change to SQL mode
 
