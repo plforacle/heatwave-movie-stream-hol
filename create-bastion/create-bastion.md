@@ -1,4 +1,4 @@
-# Create Bastion Server for MySQL and Create the movies Database
+# Create Bastion Host for MySQL and Create the movies Database
 
 ![mysql heatwave](./images/mysql-heatwave-logo.jpg "mysql heatwave")
 

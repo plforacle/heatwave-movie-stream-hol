@@ -25,7 +25,7 @@
           },
 
           {
-            "title": "Lab 3:  Create Bastion Server for MySQL and Load the MovieLens Dataset",
+            "title": "Lab 3:  Create Bastion Host for MySQL and Create the movies Database",
             "filename": "../../create-bastion/create-bastion.md"
           },
 
